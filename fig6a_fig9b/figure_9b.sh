@@ -19,7 +19,7 @@ for node in ${NODE[@]}; do
             echo "sleep 1"; sleep 1;
             echo "${workload} ${node} ${j}" 
 
-            sudo ./run_redis.sh $workload $node 200000 fig_9b/max_qps_${workload}_${node}_${j}
+            sudo ./run_redis.sh $workload $node 200000 figure_9b/max_qps_${workload}_${node}_${j}
         done
     done
 done
@@ -36,7 +36,7 @@ for ratio in ${ITLV_RATIO[@]}; do
             sudo sysctl -w vm.numa_tier_interleave_top=$top 
             sudo sysctl -w vm.numa_tier_interleave_bot=$bot
 
-            sudo ./run_redis.sh $workload "interleave" 200000 fig_9b/max_qps_${workload}_${top}_${bot}_${j}
+            sudo ./run_redis.sh $workload "interleave" 200000 figure_9b/max_qps_${workload}_${top}_${bot}_${j}
         done
     done
 done

@@ -18,7 +18,7 @@ for node in ${NODE[@]}; do
             echo "sleep 1"; sleep 1;
             echo "${workload} ${node} ${j}" 
 
-            sudo ./run_redis.sh $workload $node "loop" fig_6a/tail_lats_${workload}_${node}_${j}
+            sudo ./run_redis.sh $workload $node "loop" figure_6a/tail_lats_${workload}_${node}_${j}
         done
     done
 done
@@ -35,7 +35,7 @@ for ratio in ${ITLV_RATIO[@]}; do
             sudo sysctl -w vm.numa_tier_interleave_top=$top 
             sudo sysctl -w vm.numa_tier_interleave_bot=$bot
 
-            sudo ./run_redis.sh $workload "interleave" "loop" fig_6a/tail_lats_${workload}_${top}_${bot}_${j}
+            sudo ./run_redis.sh $workload "interleave" "loop" figure_6a/tail_lats_${workload}_${top}_${bot}_${j}
         done
     done
 done

@@ -46,9 +46,9 @@ $ git clone https://github.com/brianfrankcooper/YCSB.git
 ```
 and use the `./bin/ycsb` or `./bin/ycsb.sh` for testing.
 
-After setting up YCSB, please place `figure_6a.sh` and `figure_9b.sh` withn first level of the repository folder. 
+After setting up YCSB, please place `run_redis.sh`, `figure_6a.sh` and `figure_9b.sh` withn first level of the repository folder. 
 
-Additionally, please copy `workload*` configuration files in the `workloads` folder to the `workloads` folder in the YCSB repository. 
+Additionally, please copy `workload*` configuration files in the `workloads` folder to the `workloads` folder in the YCSB repository. These workloads maps workload(a) to workload(r), (b) -> (s) ..., with a working set size of about 10 GB.
 
 ### Redis
 Please follow this [guide](https://redis.io/docs/getting-started/installation/install-redis-on-linux/) to install Redis.
