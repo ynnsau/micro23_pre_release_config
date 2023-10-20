@@ -1,4 +1,4 @@
-# Configuration for figure 3, 4
+# Configuration for figure 6a and 9b
 This document describe how to configurate a machine to reproduce the result in figure 6a and 9b. 
 
 ## Hardware
@@ -31,11 +31,11 @@ These are the hardware used to produce the figures:
 
 ### Inserting CXL device
 ```
-    NUMA node 0 --- NUMA node 1
+    Sub-NUMA node 0,1,2,3 --- Sub-NUMA node 4,5,6,7
         |
         |
         |
-     CXL device
+     CXL device (node 8)
 ```
 
 ## Software
@@ -71,5 +71,3 @@ It does the following configurations:
 * Disable hyperthreading in software
 * Disable NUMA balancing
 * Stop `numad` if it exists
-
-On Xeon 6430, the freqeuncy is locked to 2100MHz. The TSC freqeuncy on our machine is also 2100MHz. Please adjust the `util_scripts/lock_cpu_freq.sh` if this is tested on a different platform. The result may be significantly different if the frequency is not adjusted to the max frequency of the CPU.
