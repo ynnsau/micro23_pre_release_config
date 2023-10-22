@@ -54,18 +54,18 @@ fallocate -l 50G 123
 4. Modify each file in the `test_config` to point to the absolute path of this file.
 
 5. Make sure to perform a full write to the file; otherwise, the disk is not read during FIO test.
-    a. It's recommanded to change one of the `test_config` file from random read to random write, which will write the full disk. Then you may change it back for the evaluation.
+    1. It's recommanded to change one of the `test_config` file from random read to random write, which will write the full disk. Then you may change it back for the evaluation.
 
 ### cgroup
 Linux cgroup allows fine-grain partition of resource. In this case, we use Linux cgroup to limit the file cache size to 4GB.
 
-Here is some key steps to enable cgroup on Linux:
+Here are some key steps to enable cgroup on Linux:
 
 1. Modify `/etc/default/grub` 
-    a. Append the following to the `GRUB_CMDLINE_LINUX_DEFAULT`: `cgroup_enable=memory cgroup_enable=cpuset cgroup_memory=1 systemd.unified_cgroup_hierarchy=1`
+    1. Append the following to the `GRUB_CMDLINE_LINUX_DEFAULT`: `cgroup_enable=memory cgroup_enable=cpuset cgroup_memory=1 systemd.unified_cgroup_hierarchy=1`
 2. Apply the change
-    a. `sudo update-grub`
-    b. reboot
+    1. `sudo update-grub`
+    2. reboot
 
 In the `figure_8.sh` we made a group called `cxl_mem_app` and `mem_remote`. Below is a snippt from our `/etc/cgconfig.conf`
 ```

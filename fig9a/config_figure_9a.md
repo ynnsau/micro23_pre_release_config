@@ -1,5 +1,5 @@
-# Configuration for figure 6a and 9b
-This document describe how to configurate a machine to reproduce the result in figure 6a and 9b. 
+# Configuration for figure 9a
+This document describe how to configurate a machine to reproduce the result in figure 9a 
 
 ## Hardware
 These are the hardware used to produce the figures:
@@ -39,19 +39,25 @@ These are the hardware used to produce the figures:
 ```
 
 ## Software
-### YCSB
-In some cases, the locally built YCSB performs better than the release verison. Please clone the YCSB repository:
+### ASPLOS'21 MERCI
+Please follow the [ASPLOS'21 MERCI repository](https://github.com/SNU-ARC/MERCI) to setup the DLRM embedding reduction baseline.
 ```
-$ git clone https://github.com/brianfrankcooper/YCSB.git
+$ git clone https://github.com/SNU-ARC/MERCI.git 
 ```
-and use the `./bin/ycsb` or `./bin/ycsb.sh` for testing.
 
-After setting up YCSB, please place `run_redis.sh`, `figure_6a.sh` and `figure_9b.sh` withn first level of the repository folder. 
+In our case, all experiments were evaluated with the Amazon dataset.
 
-Additionally, please copy `workload*` configuration files in the `workloads` folder to the `workloads` folder in the YCSB repository. These workloads maps workload(a) to workload(r), (b) -> (s) ..., with a working set size of about 10 GB.
+Please configure the setup until the following command is functional:
+```
+# under MERCI/4_performance_evaluation
+$ ./bin/eval_baseline -d amazon_Office_Products -r 10 -c 8
+```
 
-### Redis
-Please follow this [guide](https://redis.io/docs/getting-started/installation/install-redis-on-linux/) to install Redis.
+Note that the MERCI code does physcial CPU bind within each thread. Thus, `numactl` CPU binding may not work for the `./bin/eval_baseline`.
+
+You may either modify its source code to bind with an additional command line arugment; force binding with cgroup; or give up binding in the source code and let numactl bind the core externally.
+
+Finally, please place the `figure_9a.sh` into the `MERCI/4_performance_evaluation` directory.
 
 ### Patched Linux Kernel:
 We applied the N:M interleaving [patch](https://lore.kernel.org/linux-mm/YqD0%2FtzFwXvJ1gK6@cmpxchg.org/T/) to a Linux Kernel 5.19. We make the following modification to allow a more fine-grain tuning of the memory ratio:
@@ -60,7 +66,6 @@ We applied the N:M interleaving [patch](https://lore.kernel.org/linux-mm/YqD0%2F
     * `numa_tier_interleave_top` for top tier
     * `numa_tier_interleave_bot` for bot tier
   + The rest of the patch is applied without any modification
-
 
 ### System configuration
 The `util_scripts/config_all.sh` is executed before each test within the testing scripts.
