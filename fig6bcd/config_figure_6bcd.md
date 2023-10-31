@@ -62,7 +62,7 @@ We applied the N:M interleaving [patch](https://lore.kernel.org/linux-mm/YqD0%2F
     * `numa_tier_interleave_top` for top tier
     * `numa_tier_interleave_bot` for bot tier
   + The rest of the patch is applied without any modification
-  + We later found out that this step is not neede ;) --  `sudo sysctl -w numa_tier_interleave="<top> <bot>"` can achieve the same effect.
+  + We later found out that this step is not needed ;) --  `sudo sysctl -w numa_tier_interleave="<top> <bot>"` can achieve the same effect.
 
 ### System configuration
 The `util_scripts/config_all.sh` is executed before each test within the testing scripts.
